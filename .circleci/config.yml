@@ -128,8 +128,8 @@ jobs:
             cd frontend
             npm install
             npm run test
-      - notify-success
-      - notify-fails  
+      # - notify-success
+      # - notify-fails  
               
   test-backend:
     docker:
