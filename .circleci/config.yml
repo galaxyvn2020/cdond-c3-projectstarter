@@ -53,27 +53,27 @@ commands:
           template: success_tagged_deploy_1
 
 jobs:
-  notify:
-    docker:
-      - image: "cimg/base:stable"
-    steps:
-      - slack/notify:
-          custom: |
-            {
-              "blocks": [
-                {
-                  "type": "section",
-                  "fields": [
-                    {
-                      "type": "plain_text",
-                      "text": "*START RUN CICD*",
-                      "emoji": true
-                    }
-                  ]
-                }
-              ]
-            }
-          event: always 
+  # notify:
+  #   docker:
+  #     - image: "cimg/base:stable"
+  #   steps:
+  #     - slack/notify:
+  #         custom: |
+  #           {
+  #             "blocks": [
+  #               {
+  #                 "type": "section",
+  #                 "fields": [
+  #                   {
+  #                     "type": "plain_text",
+  #                     "text": "*START RUN CICD*",
+  #                     "emoji": true
+  #                   }
+  #                 ]
+  #               }
+  #             ]
+  #           }
+  #         event: always 
 
   build-frontend:
     docker:
@@ -91,8 +91,8 @@ jobs:
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
-      - notify-success
-      - notify-fails
+      # - notify-success
+      # - notify-fails
 
   build-backend:
     docker:
@@ -111,8 +111,8 @@ jobs:
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
-      - notify-success
-      - notify-fails
+      # - notify-success
+      # - notify-fails
 
   test-frontend:
     docker:
@@ -145,8 +145,8 @@ jobs:
             cd backend
             npm install
             npm run test
-      - notify-success
-      - notify-fails
+      # - notify-success
+      # - notify-fails
 
   scan-frontend:
     docker:
@@ -160,8 +160,8 @@ jobs:
           command: |
             cd frontend
             npm install
-      - notify-success
-      - notify-fails
+      # - notify-success
+      # - notify-fails
 
   scan-backend:
     docker:
@@ -175,8 +175,8 @@ jobs:
           command: |
             cd backend
             npm install
-      - notify-success
-      - notify-fails
+      # - notify-success
+      # - notify-fails
 
   deploy-infrastructure:
     docker:
