@@ -343,12 +343,10 @@ jobs:
             pwd
             cd .. 
             tar -C backend -czvf artifact.tar.gz .
-            mkdir -p ~/project/.circleci/ansible/roles/deploy/files/
-            mv artifact.tar.gz .circleci/ansible/roles/deploy/files/artifact.tar.gz
-            cd .circleci/ansible
-            cat inventory.txt
+            cd ~/project/.circleci/ansible
             ansible-playbook -i inventory.txt deploy-backend.yml
             sleep 30s
+            
             
       - destroy-environment:
           workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
