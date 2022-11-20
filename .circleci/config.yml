@@ -141,8 +141,7 @@ jobs:
       - run:
           name: Install tar/gzip utility
           command: |
-            yum -y install tar
-            yum -y install gzip
+            yum -y install tar gzip
       - run:
           name: Ensure front-end infrastructure exist
           command: |
